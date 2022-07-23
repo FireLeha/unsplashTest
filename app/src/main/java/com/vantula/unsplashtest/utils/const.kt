@@ -1,7 +1,6 @@
 package com.vantula.unsplashtest.utils
 
 const val UNSPLASH_API_URL = "https://api.unsplash.com/"
-const val UNSPLASH_API_KEY = "hLteNBlgcU8J3z3qmBt4jkwu3yhqOME-UhNAx5b7nO0"
 const val UNSPLASH_TOPICS_ENDPOINT = "topics"
 
 //Page number to retrieve. Value type = Int

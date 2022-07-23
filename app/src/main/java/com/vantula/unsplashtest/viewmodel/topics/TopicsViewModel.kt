@@ -21,8 +21,12 @@ class TopicsViewModel(
 
     fun getTopics(page: Int, perPage: Int, orderBy: String) {
         liveData.postValue(AppStateTopicsFragment.Loading(0))
-        repositoryTopicsImpl.getTopicsFromServer(page, perPage, orderBy, callback)
+        Thread {
+            repositoryTopicsImpl.getTopicsFromServer(page, perPage, orderBy, callback)
+        }.start()
+
     }
+
 
     private val callback = object: Callback<UnsplashDTO> {
         override fun onResponse(call: Call<UnsplashDTO>, response: Response<UnsplashDTO>) {
@@ -52,7 +56,7 @@ class TopicsViewModel(
         }
 
         override fun onFailure(call: Call<UnsplashDTO>, t: Throwable) {
-            liveData.postValue(AppStateTopicsFragment.Error(error("Response failed")))
+                liveData.postValue(AppStateTopicsFragment.Error(error("Response failed")))
         }
 
     }

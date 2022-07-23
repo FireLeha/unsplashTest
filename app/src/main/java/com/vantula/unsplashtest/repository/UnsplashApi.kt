@@ -1,7 +1,7 @@
 package com.vantula.unsplashtest.repository
 
+import com.vantula.unsplashtest.BuildConfig.UNSPLASH_API_KEY
 import com.vantula.unsplashtest.model.UnsplashDTO
-import com.vantula.unsplashtest.utils.UNSPLASH_API_KEY
 import com.vantula.unsplashtest.utils.UNSPLASH_TOPICS_ENDPOINT
 import retrofit2.Call
 import retrofit2.http.GET
