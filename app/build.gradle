@@ -14,6 +14,13 @@ android {
         viewBinding true
     }
 
+    buildTypes.each{
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file("apikey.properties").newDataInputStream())
+        def apiKey = properties.getProperty("API_KEY","")
+        it.buildConfigField("String", "UNSPLASH_API_KEY", apiKey)
+    }
+
     defaultConfig {
         applicationId "com.vantula.unsplashtest"
         minSdk 24
