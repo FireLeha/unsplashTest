@@ -50,7 +50,7 @@ class TopicsAdapter: RecyclerView.Adapter<TopicsAdapter.TopicsViewHolder>() {
 
                 topicTitle.text = topics.title
                 topicDescription.text = topics.description
-                topicTotalPhotosCount.text = topics.totalPhotos.toString()
+                topicTotalPhotosCount.text = "${topics.totalPhotos.toString()} contributions"
             }
 
         }

@@ -1,5 +1,6 @@
 package com.vantula.unsplashtest.viewmodel.topics
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -28,11 +29,11 @@ class TopicsViewModel(
     }
 
 
-    private val callback = object: Callback<UnsplashDTO> {
-        override fun onResponse(call: Call<UnsplashDTO>, response: Response<UnsplashDTO>) {
+    private val callback = object: Callback<List<UnsplashDTO>> {
+        override fun onResponse(call: Call<List<UnsplashDTO>>, response: Response<List<UnsplashDTO>>) {
             if (response.isSuccessful){
                 response.body()?.let {
-                    liveData.postValue(AppStateTopicsFragment.Success(listOf(it)))
+                    liveData.postValue(AppStateTopicsFragment.Success(it))
                 }
             } else {
                 when (response.code()) {
@@ -55,7 +56,8 @@ class TopicsViewModel(
             }
         }
 
-        override fun onFailure(call: Call<UnsplashDTO>, t: Throwable) {
+        override fun onFailure(call: Call<List<UnsplashDTO>>, t: Throwable) {
+            Log.d("mylogs", t.toString())
                 liveData.postValue(AppStateTopicsFragment.Error(error("Response failed")))
         }
 

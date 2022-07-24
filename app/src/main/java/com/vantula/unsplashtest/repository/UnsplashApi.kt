@@ -14,9 +14,10 @@ interface UnsplashApi {
     @Headers("Accept-Version: v1")
     @GET(UNSPLASH_TOPICS_ENDPOINT)
     fun getTopics(
-        @Header("Authorization: Client-ID $UNSPLASH_API_KEY") apikey: String,
+//        @Header("Authorization: Client-ID $UNSPLASH_API_KEY") apikey: String,
+        @Query("client_id") apikey: String,
         @Query("page") page: Int,
         @Query("per_page") perPage: Int,
         @Query("order_by") orderBy: String
-    ): Call<UnsplashDTO>
+    ): Call<List<UnsplashDTO>>
 }

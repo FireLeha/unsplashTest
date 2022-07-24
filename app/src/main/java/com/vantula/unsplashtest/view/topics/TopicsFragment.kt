@@ -40,7 +40,10 @@ class TopicsFragment : Fragment() {
     }
 
     private fun loadTopicsList() {
-        topicsViewModel.getTopics(PAGE, PER_PAGE, ORDER_BY)
+        Thread{
+            topicsViewModel.getTopics(PAGE, PER_PAGE, ORDER_BY)
+        }.start()
+
     }
 
     private fun renderData(appStateTopicsFragment: AppStateTopicsFragment) {
