@@ -8,10 +8,10 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.vantula.unsplashtest.R
 import com.vantula.unsplashtest.databinding.FragmentTopicsRecyclerItemBinding
 import com.vantula.unsplashtest.model.UnsplashTopicsDTO
-import com.vantula.unsplashtest.viewmodel.topics.OnMyItemClickListener
+import com.vantula.unsplashtest.viewmodel.topics.TopicsClickListener
 
 class TopicsAdapter(
-    val listener: OnMyItemClickListener,
+    val listener: TopicsClickListener,
 ) : RecyclerView.Adapter<TopicsAdapter.TopicsViewHolder>() {
 
     private var topicsData: List<UnsplashTopicsDTO> = listOf()
@@ -59,7 +59,6 @@ class TopicsAdapter(
                         .error(R.drawable.ic_error)
                         .into(topicCoverPhoto)
 
-                    topicId.text = id
                     topicTitle.text = title
                     topicDescription.text = description
                     topicTotalPhotosCount.text = "${totalPhotos.toString()} contributions"

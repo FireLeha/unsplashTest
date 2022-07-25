@@ -7,6 +7,8 @@ object Constants {
 
         const val TOPIC_ID_KEY = "id"
         const val SHARED_PREFERENCES_KEY = "sp_key"
+        const val IMAGE_URL_KEY = "image_key"
+        const val IMAGE_ID_KEY = "image_id"
 
 
         //Page number to retrieve. Value type = Int

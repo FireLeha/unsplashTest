@@ -8,8 +8,10 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.vantula.unsplashtest.R
 import com.vantula.unsplashtest.databinding.FragmentImagesRecyclerItemBinding
 import com.vantula.unsplashtest.model.UnsplashImagesDTO
+import com.vantula.unsplashtest.viewmodel.images.ImagesClickListener
 
-class ImagesAdapter:RecyclerView.Adapter<ImagesAdapter.ImagesViewHolder>() {
+class ImagesAdapter(val listener: ImagesClickListener) :
+    RecyclerView.Adapter<ImagesAdapter.ImagesViewHolder>() {
 
     private var topicImageData: List<UnsplashImagesDTO> = listOf()
 
@@ -33,21 +35,23 @@ class ImagesAdapter:RecyclerView.Adapter<ImagesAdapter.ImagesViewHolder>() {
     override fun getItemCount(): Int = topicImageData.size
 
 
-
-
     inner class ImagesViewHolder(
         private val binding: FragmentImagesRecyclerItemBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(images: UnsplashImagesDTO) {
             binding.apply {
-                with(images){
+                with(images) {
                     Glide.with(itemView)
                         .load(urls.regular)
                         .centerCrop()
                         .transition(DrawableTransitionOptions.withCrossFade())
                         .error(R.drawable.ic_error)
                         .into(image)
+
+                    image.setOnClickListener {
+                        listener.onItemClick(id,urls.regular)
+                    }
                 }
             }
         }

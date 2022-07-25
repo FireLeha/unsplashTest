@@ -8,17 +8,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.vantula.unsplashtest.R
 import com.vantula.unsplashtest.databinding.FragmentImagesBinding
 import com.vantula.unsplashtest.utils.Constants
+import com.vantula.unsplashtest.utils.Constants.IMAGE_ID_KEY
+import com.vantula.unsplashtest.utils.Constants.IMAGE_URL_KEY
 import com.vantula.unsplashtest.utils.Constants.ITEMS_PER_PAGE
 import com.vantula.unsplashtest.utils.Constants.ORDER_PHOTOS_BY
 import com.vantula.unsplashtest.utils.Constants.PAGE
 import com.vantula.unsplashtest.utils.Constants.PHOTO_ORIENTATION
 import com.vantula.unsplashtest.utils.Constants.TOPIC_ID_KEY
+import com.vantula.unsplashtest.view.detailsimage.DetailsFragment
 import com.vantula.unsplashtest.viewmodel.images.AppStateImagesFragment
+import com.vantula.unsplashtest.viewmodel.images.ImagesClickListener
 import com.vantula.unsplashtest.viewmodel.images.ImagesViewModel
 
-class ImagesFragment : Fragment() {
+class ImagesFragment : Fragment(), ImagesClickListener {
 
 
     private val imagesViewModel: ImagesViewModel by lazy {
@@ -26,7 +31,7 @@ class ImagesFragment : Fragment() {
     }
 
     private val adapter: ImagesAdapter by lazy {
-        ImagesAdapter()
+        ImagesAdapter(this)
     }
 
     private var topicId: String = ""
@@ -105,5 +110,21 @@ class ImagesFragment : Fragment() {
         get() {
             return _binding!!
         }
+
+    override fun onItemClick(id: String, url: String) {
+            val editor = sp.edit()
+            editor?.putString(IMAGE_URL_KEY, url)
+            editor?.putString(IMAGE_ID_KEY, id)
+            editor?.apply()
+
+            activity?.run {
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.container, DetailsFragment.newInstance())
+                    .addToBackStack("").commit()
+            }
+
+
+
+    }
 
 }

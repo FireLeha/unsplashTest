@@ -17,10 +17,10 @@ import com.vantula.unsplashtest.utils.Constants.SHARED_PREFERENCES_KEY
 import com.vantula.unsplashtest.utils.Constants.TOPIC_ID_KEY
 import com.vantula.unsplashtest.view.images.ImagesFragment
 import com.vantula.unsplashtest.viewmodel.topics.AppStateTopicsFragment
-import com.vantula.unsplashtest.viewmodel.topics.OnMyItemClickListener
+import com.vantula.unsplashtest.viewmodel.topics.TopicsClickListener
 import com.vantula.unsplashtest.viewmodel.topics.TopicsViewModel
 
-class TopicsFragment : Fragment(), OnMyItemClickListener {
+class TopicsFragment : Fragment(), TopicsClickListener {
 
     private val adapter: TopicsAdapter by lazy {
         TopicsAdapter(this)

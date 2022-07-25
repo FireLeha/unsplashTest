@@ -1,5 +1,6 @@
 package com.vantula.unsplashtest.repository
 
+import com.vantula.unsplashtest.model.UnsplashDetailDTO
 import com.vantula.unsplashtest.model.UnsplashImagesDTO
 import com.vantula.unsplashtest.model.UnsplashTopicsDTO
 import com.vantula.unsplashtest.utils.Constants.UNSPLASH_TOPICS_ENDPOINT
@@ -30,4 +31,10 @@ interface UnsplashApi {
         @Query("orientation") orientation: String,
         @Query("order_by") orderBy: String,
     ): Call<List<UnsplashImagesDTO>>
+
+    @GET("photos/{id}")
+    fun getPhoto(
+        @Path("id") id: String,
+        @Query("client_id") apikey: String
+    ): Call<List<UnsplashDetailDTO>>
 }
