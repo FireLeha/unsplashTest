@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class UnsplashDTO (
+data class UnsplashTopicsDTO (
     val id: String,
     val title: String,
     val description: String,

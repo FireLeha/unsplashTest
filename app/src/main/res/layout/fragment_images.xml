@@ -7,18 +7,18 @@
     tools:context=".MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/topicsFragmentRecyclerView"
+        android:id="@+id/imagesFragmentRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/fragment_topics_recycler_item"
+        tools:listitem="@layout/fragment_images_recycler_item"
         />
 
     <FrameLayout
-        android:id="@+id/topicsFragmentLoadingLayout"
+        android:id="@+id/imagesFragmentLoadingLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/black"

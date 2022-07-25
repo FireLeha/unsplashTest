@@ -4,14 +4,14 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.vantula.unsplashtest.model.UnsplashDTO
-import com.vantula.unsplashtest.repository.RepositoryTopicsImpl
+import com.vantula.unsplashtest.model.UnsplashTopicsDTO
+import com.vantula.unsplashtest.repository.topics.RepositoryTopicsImpl
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class TopicsViewModel(
-    private val liveData: MutableLiveData<AppStateTopicsFragment> = MutableLiveData(),
+    private val liveData: MutableLiveData<AppStateTopicsFragment> = MutableLiveData()
 ) : ViewModel() {
 
     private val repositoryTopicsImpl: RepositoryTopicsImpl by lazy {
@@ -29,8 +29,8 @@ class TopicsViewModel(
     }
 
 
-    private val callback = object: Callback<List<UnsplashDTO>> {
-        override fun onResponse(call: Call<List<UnsplashDTO>>, response: Response<List<UnsplashDTO>>) {
+    private val callback = object: Callback<List<UnsplashTopicsDTO>> {
+        override fun onResponse(call: Call<List<UnsplashTopicsDTO>>, response: Response<List<UnsplashTopicsDTO>>) {
             if (response.isSuccessful){
                 response.body()?.let {
                     liveData.postValue(AppStateTopicsFragment.Success(it))
@@ -56,10 +56,12 @@ class TopicsViewModel(
             }
         }
 
-        override fun onFailure(call: Call<List<UnsplashDTO>>, t: Throwable) {
+        override fun onFailure(call: Call<List<UnsplashTopicsDTO>>, t: Throwable) {
             Log.d("mylogs", t.toString())
                 liveData.postValue(AppStateTopicsFragment.Error(error("Response failed")))
         }
 
     }
+
+
 }

@@ -1,7 +1,7 @@
 package com.vantula.unsplashtest
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.vantula.unsplashtest.databinding.ActivityMainBinding
 import com.vantula.unsplashtest.view.topics.TopicsFragment
 
